@@ -32,17 +32,7 @@
 
     </i:Interaction.Triggers>
 
-    <Grid DataContext="{Binding TimerContent}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="7*" />
-            <RowDefinition Height="2*" />
-        </Grid.RowDefinitions>
-        
-        <v:DigitalTimer Grid.Row="1" HorizontalAlignment="Center"/>
-        <Grid Grid.Row="2" x:Name="controlContents">
-            <v:StartButtonControl Width="60" Height="30"/>
-            <v:StopButtonControl Width="60" Height="30"/>
-        </Grid>
+    <Grid DataContext="{Binding Content}">
+        <v:TimerContent />
     </Grid>
 </Window>

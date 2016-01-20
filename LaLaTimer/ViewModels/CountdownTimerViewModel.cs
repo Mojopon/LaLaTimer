@@ -15,7 +15,7 @@ using LaLaTimer.Models;
 
 namespace LaLaTimer.ViewModels
 {
-    public class CountdownTimerViewModel : ViewModel
+    public class CountdownTimerViewModel : TimerViewModel
     {
         /* コマンド、プロパティの定義にはそれぞれ 
          * 

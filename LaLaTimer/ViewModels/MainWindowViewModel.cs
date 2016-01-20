@@ -60,11 +60,11 @@ namespace LaLaTimer.ViewModels
          */
 
 
-        public object TimerContent { get; set; }
+        public object Content { get; set; }
 
         public MainWindowViewModel()
         {
-            TimerContent = new TimerViewModel();
+            Content = new TimerContentViewModel();
         }
 
         public void Initialize()

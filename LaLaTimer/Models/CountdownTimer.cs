@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using LaLaTimer.Utility;
 
 using Livet;
+using Reactive.Bindings;
 
 namespace LaLaTimer.Models
 {
@@ -64,36 +66,38 @@ namespace LaLaTimer.Models
         }
         #endregion
 
-        #region CountdownEnd変更通知プロパティ
-        private bool _CountdownEnd;
-
-        public bool CountdownEnd
-        {
-            get
-            { return _CountdownEnd; }
-            set
-            { 
-                if (_CountdownEnd == value)
-                    return;
-                _CountdownEnd = value;
-                RaisePropertyChanged();
-            }
-        }
-        #endregion
+        public ReactiveProperty<bool> IsRunning { get; private set; } = new ReactiveProperty<bool>(false);
+        public ReactiveProperty<bool> CountdownEnd { get; private set; } = new ReactiveProperty<bool>(false);
 
         public double Progress { get { return GetProgress(); } }
 
         public CountdownTimer(int startHour, int startMinute, int startSecond)
         {
+            timer = new DispatcherTimerManager(250);
+            timer.OnTick += (() => Tick());
+
             this.startHour = startHour;
             this.startMinute = startMinute;
             this.startSecond = startSecond;
             Reset();
         }
 
+        private DispatcherTimerManager timer;
+        public void Start()
+        {
+            timer.Start();
+            IsRunning.Value = true;
+        }
+
+        public void Stop()
+        {
+            timer.Stop();
+            IsRunning.Value = false;
+        }
+
         public void Tick()
         {
-            if (CountdownEnd) return;
+            if (CountdownEnd.Value) return;
             ProgressSecond();
         }
 
@@ -102,7 +106,7 @@ namespace LaLaTimer.Models
             Hour = startHour;
             Minute = startMinute;
             Second = startSecond;
-            CountdownEnd = false;
+            CountdownEnd.Value = false;
         }
 
         private void ProgressSecond()
@@ -110,7 +114,7 @@ namespace LaLaTimer.Models
             if (Second <= 0)
             {
                 ProgressMinute();
-                if (CountdownEnd) return;
+                if (CountdownEnd.Value) return;
                 Second = 60 + Second;
             }
 
@@ -122,7 +126,7 @@ namespace LaLaTimer.Models
             if (Minute <= 0)
             {
                 ProgressHour();
-                if (CountdownEnd) return;
+                if (CountdownEnd.Value) return;
                 Minute = 60 + Minute;
             }
             Minute--;
@@ -134,7 +138,7 @@ namespace LaLaTimer.Models
         {
             if(Hour <= 0)
             {
-                CountdownEnd = true;
+                CountdownEnd.Value = true;
                 return;
             }
 

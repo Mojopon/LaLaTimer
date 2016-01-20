@@ -12,6 +12,8 @@ using Livet.EventListeners;
 using Livet.Messaging.Windows;
 using LaLaTimer.Utility;
 using LaLaTimer.Models;
+using System.Reactive.Linq;
+using Reactive.Bindings.Extensions;
 
 namespace LaLaTimer.ViewModels
 {
@@ -59,8 +61,6 @@ namespace LaLaTimer.ViewModels
          * 自動的にUIDispatcher上での通知に変換されます。変更通知に際してUIDispatcherを操作する必要はありません。
          */
 
-
-
         #region Timer変更通知プロパティ
         private CountdownTimer _Timer;
 
@@ -78,32 +78,52 @@ namespace LaLaTimer.ViewModels
         }
         #endregion
 
-        private DispatcherTimerManager timerManager;
+        #region TimerIsRunning変更通知プロパティ
+        private bool _TimerIsRunning;
+
+        public bool TimerIsRunning
+        {
+            get
+            { return _TimerIsRunning; }
+            set
+            { 
+                if (_TimerIsRunning == value)
+                    return;
+                _TimerIsRunning = value;
+                if (TimerIsRunning) Console.WriteLine("Timer has been started");
+                else Console.WriteLine("Timer has been stopped");
+                RaisePropertyChanged();
+            }
+        }
+        #endregion
+
+
         public TimerViewModel()
         {
+            CompositeDisposable = new LivetCompositeDisposable();
+
             LaLaTimerClient.Current.OnChangeTimer.Subscribe(OnChangeTimer);
         }
 
         void OnChangeTimer(CountdownTimer timer)
         {
             Timer = timer;
-            SetupTimerManager(Timer);
+            Timer.IsRunning
+                 .Select(x => x)
+                 .Subscribe(x => TimerIsRunning = x)
+                 .AddTo(CompositeDisposable);
         }
 
-        void SetupTimerManager(CountdownTimer timer)
+        public void OnPressStartButton()
         {
-            if(timerManager!= null)
-            {
-                timerManager.Stop();
-            }
-
-            timerManager = new DispatcherTimerManager(250);
-            timerManager.OnTick += (() => timer.Tick());
+            if(TimerIsRunning) return;
+            Timer.Start();
         }
 
-        public void StartTimer()
+        public void OnPressStopButton()
         {
-            timerManager.Start();
+            if (!TimerIsRunning) return;
+            Timer.Stop();
         }
 
         public void Initialize()

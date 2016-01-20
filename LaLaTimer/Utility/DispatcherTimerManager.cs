@@ -14,6 +14,9 @@ namespace LaLaTimer.Utility
         public bool IsTicking { get { return isTicking; } private set { isTicking = value; } }
 
         private DispatcherTimer dispatcherTimer;
+
+        public DispatcherTimerManager() : this(250) { }
+
         public DispatcherTimerManager(int updateFrequensyMS)
         {
             dispatcherTimer = new DispatcherTimer(DispatcherPriority.Normal);

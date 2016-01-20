@@ -13,8 +13,13 @@ namespace LaLaTimer
     {
         public static LaLaTimerClient Current { get; } = new LaLaTimerClient();
 
-        private BehaviorSubject<CountdownTimer> TimerGateway = new BehaviorSubject<CountdownTimer>(new CountdownTimer(0, 5, 0));
-        public IObservable<CountdownTimer> OnChangeTimer => this.TimerGateway.AsObservable();
+        private BehaviorSubject<ITimer> TimerGateway = new BehaviorSubject<ITimer>(new PomodoroTimer(
+            new TimerTime(0, 2, 0),
+            new TimerTime(0, 1, 0),
+            3,
+            new TimerTime(0, 3, 0)
+            ));
+        public IObservable<ITimer> OnChangeTimer => this.TimerGateway.AsObservable();
 
 
     }

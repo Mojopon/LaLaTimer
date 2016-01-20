@@ -104,6 +104,9 @@
     <Compile Include="Converter\DigitalTimerTextConverter.cs" />
     <Compile Include="LaLaTimerClient.cs" />
     <Compile Include="Models\CountdownTimer.cs" />
+    <Compile Include="Models\ITimer.cs" />
+    <Compile Include="Models\PomodoroTimer.cs" />
+    <Compile Include="Models\TimerBase.cs" />
     <Compile Include="Utility\DispatcherTimerManager.cs" />
     <Compile Include="ViewModels\TimerViewModel.cs" />
     <Compile Include="Views\DigitalTimer.xaml.cs">

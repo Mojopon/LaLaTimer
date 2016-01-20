@@ -101,6 +101,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converter\DigitalTimerTextConverter.cs" />
     <Compile Include="LaLaTimerClient.cs" />
     <Compile Include="Models\CountdownTimer.cs" />
     <Compile Include="Utility\DispatcherTimerManager.cs" />

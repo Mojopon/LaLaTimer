@@ -8,7 +8,7 @@
              xmlns:conv="clr-namespace:LaLaTimer.Converter"
              mc:Ignorable="d" 
              d:DesignHeight="150" d:DesignWidth="350"
-             d:DataContext="{d:DesignInstance vm:TimerViewModel}">
+             d:DataContext="{d:DesignInstance vm:TimerViewModelBase}">
     <Grid DataContext="{Binding Timer}">
         <Grid.Resources>
             <conv:DigitalTimerTextConverter x:Key="digitalTimerTextConverter" />

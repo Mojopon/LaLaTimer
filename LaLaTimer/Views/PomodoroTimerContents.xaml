@@ -16,7 +16,7 @@
             <RowDefinition Height="1*" />
             <RowDefinition Height="9*" />
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Text="Pomodoro Timer" />
+        <v:RepeatTimeDisplay Grid.Row="0"/>
         <v:DigitalTimer Grid.Row="1"/>
     </Grid>
 </UserControl>

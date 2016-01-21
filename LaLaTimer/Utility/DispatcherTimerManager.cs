@@ -15,7 +15,7 @@ namespace LaLaTimer.Utility
 
         private DispatcherTimer dispatcherTimer;
 
-        public DispatcherTimerManager() : this(250) { }
+        public DispatcherTimerManager() : this(1) { }
 
         public DispatcherTimerManager(int updateFrequensyMS)
         {
@@ -45,9 +45,9 @@ namespace LaLaTimer.Utility
         {
             progress += (long)(DateTime.Now - lastUpdate).TotalMilliseconds;
             lastUpdate = DateTime.Now;
-            if (progress > 1000)
+            if (progress > 1)
             {
-                progress -= 1000;
+                progress -= 1;
                 if (OnTick != null) OnTick();
             }
         }

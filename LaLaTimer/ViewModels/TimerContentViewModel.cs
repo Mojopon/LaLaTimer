@@ -37,12 +37,10 @@ namespace LaLaTimer.ViewModels
         {
             if (typeof(PomodoroTimer) == timer.GetType())
             {
-                Console.WriteLine("Pomodoro timer");
                 Content = new PomodoroTimerViewModel();
             }
             else if(typeof(CountdownTimer) == timer.GetType())
             {
-                Console.WriteLine("Countdown Timer");
                 Content = new CountdownTimerViewModel();
             }
         }

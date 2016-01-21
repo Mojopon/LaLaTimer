@@ -32,17 +32,17 @@ namespace LaLaTimer.Models
 
         private TimerTime taskTime;
         private TimerTime breakTime;
-        private int repeat;
         private TimerTime longBreakTime;
 
+        public int RepeatTime;
         public ReactiveProperty<PomodoroPhase> Phase = new ReactiveProperty<PomodoroPhase>();
+        public ReactiveProperty<int> RepeatTimeLeft = new ReactiveProperty<int>();
         private TimerTime current;
-        private int tasksLeft;
         public PomodoroTimer(TimerTime taskTime, TimerTime breakTime, int repeat, TimerTime longBreakTime) : base()
         {
             this.taskTime = taskTime;
             this.breakTime = breakTime;
-            this.repeat = repeat;
+            this.RepeatTime = repeat;
             this.longBreakTime = longBreakTime;
 
             Reset();
@@ -59,7 +59,7 @@ namespace LaLaTimer.Models
         public override void Reset()
         {
             current = taskTime;
-            tasksLeft = repeat;
+            RepeatTimeLeft.Value = RepeatTime;
             Phase.Value = PomodoroPhase.Task;
 
             ResetToDestination(current);
@@ -71,8 +71,8 @@ namespace LaLaTimer.Models
             {
                 case PomodoroPhase.Task:
                     {
-                        tasksLeft--;
-                        if(tasksLeft <= 0)
+                        RepeatTimeLeft.Value--;
+                        if(RepeatTimeLeft.Value <= 0)
                         {
                             current = longBreakTime;
                             Phase.Value = PomodoroPhase.LongBreak;

@@ -17,7 +17,7 @@ using Reactive.Bindings.Extensions;
 
 namespace LaLaTimer.ViewModels
 {
-    public class TimerViewModel : ViewModel
+    public class TimerViewModelBase : ViewModel
     {
         /* コマンド、プロパティの定義にはそれぞれ 
          * 
@@ -96,14 +96,15 @@ namespace LaLaTimer.ViewModels
         #endregion
 
 
-        public TimerViewModel()
+        public TimerViewModelBase()
         {
             CompositeDisposable = new LivetCompositeDisposable();
 
+            Console.WriteLine("Timer view model base called");
             LaLaTimerClient.Current.OnChangeTimer.Subscribe(OnChangeTimer);
         }
 
-        void OnChangeTimer(ITimer timer)
+        protected virtual void OnChangeTimer(ITimer timer)
         {
             Timer = timer;
             Timer.IsRunning

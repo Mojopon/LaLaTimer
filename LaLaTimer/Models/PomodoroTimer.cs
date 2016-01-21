@@ -23,19 +23,11 @@ namespace LaLaTimer.Models
 
     public class PomodoroTimer : TimerBase
     {
-        public enum PomodoroPhase
-        {
-            Task,
-            Break,
-            LongBreak,
-        }
-
         private TimerTime taskTime;
         private TimerTime breakTime;
         private TimerTime longBreakTime;
 
         public int RepeatTime;
-        public ReactiveProperty<PomodoroPhase> Phase = new ReactiveProperty<PomodoroPhase>();
         public ReactiveProperty<int> RepeatTimeLeft = new ReactiveProperty<int>();
         private TimerTime current;
         public PomodoroTimer(TimerTime taskTime, TimerTime breakTime, int repeat, TimerTime longBreakTime) : base()
@@ -49,7 +41,7 @@ namespace LaLaTimer.Models
 
             CountdownEnd.Subscribe(x =>
             {
-                if(x)
+                if (x)
                 {
                     SwitchTimer();
                 }
@@ -60,45 +52,44 @@ namespace LaLaTimer.Models
         {
             current = taskTime;
             RepeatTimeLeft.Value = RepeatTime;
-            Phase.Value = PomodoroPhase.Task;
 
             ResetToDestination(current);
         }
 
         void SwitchTimer()
         {
-            switch(Phase.Value)
+            if (current == taskTime)
             {
-                case PomodoroPhase.Task:
-                    {
-                        RepeatTimeLeft.Value--;
-                        if(RepeatTimeLeft.Value <= 0)
-                        {
-                            current = longBreakTime;
-                            Phase.Value = PomodoroPhase.LongBreak;
-                        }else
-                        {
-                            current = breakTime;
-                            Phase.Value = PomodoroPhase.Break;
-                        }
-                    }
-                    break;
-                case PomodoroPhase.Break:
-                    {
-                        current = taskTime;
-                        Phase.Value = PomodoroPhase.Task;
-                    }
-                    break;
-                case PomodoroPhase.LongBreak:
-                    {
-                        Reset();
-                        Stop();
-                        return;
-                    }
+                RepeatTimeLeft.Value--;
+                if (RepeatTimeLeft.Value <= 0)
+                {
+                    current = longBreakTime;
+                }
+                else
+                {
+                    current = breakTime;
+                }
+            }
+            else if (current == breakTime)
+            {
+                current = taskTime;
+            }
+            else if (current == longBreakTime)
+            {
+                Stop();
+                Reset();
+                Phase.Value = TimerPhase.IsIdle;
+
+                return;
             }
 
-            ResetToDestination(current);
             Stop();
+            ResetToDestination(current);
+        }
+
+        protected override void TimerEnd()
+        {
+            CountdownEnd.Value = true;
         }
 
         void ResetToDestination(TimerTime destination)
@@ -106,6 +97,25 @@ namespace LaLaTimer.Models
             Hour = destination.Hour;
             Minute = destination.Minute;
             Second = destination.Second;
+        }
+
+
+        private double GetProgress()
+        {
+            var currentProgress = 1 - (GetTotalCurrentTimeSecond() / GetTotalStartTimeSecond());
+            if (currentProgress > 1) currentProgress = 1;
+            if (currentProgress < 0) currentProgress = 0;
+            return currentProgress;
+        }
+
+        private double GetTotalStartTimeSecond()
+        {
+            return current.Second + current.Minute * 60 + ((current.Hour * 60) * 60);
+        }
+
+        private double GetTotalCurrentTimeSecond()
+        {
+            return Second + Minute * 60 + ((Hour * 60) * 60);
         }
     }
 }

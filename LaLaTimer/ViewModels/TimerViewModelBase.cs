@@ -107,9 +107,8 @@ namespace LaLaTimer.ViewModels
         protected virtual void OnChangeTimer(ITimer timer)
         {
             Timer = timer;
-            Timer.IsRunning
-                 .Select(x => x)
-                 .Subscribe(x => TimerIsRunning = x)
+            Timer.Phase
+                 .Subscribe(x => TimerIsRunning = x == TimerPhase.IsRunning)
                  .AddTo(CompositeDisposable);
         }
 

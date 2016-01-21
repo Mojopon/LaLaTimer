@@ -7,14 +7,21 @@ using System.Threading.Tasks;
 
 namespace LaLaTimer.Models
 {
+    public enum TimerPhase
+    {
+        IsIdle,
+        IsRunning,
+        IsStopped,
+    }
+
     public interface ITimer
     {
         int Hour { get; }
         int Minute { get; }
         int Second { get; }
 
-        ReactiveProperty<bool> IsRunning { get; }
         ReactiveProperty<bool> CountdownEnd { get; }
+        ReactiveProperty<TimerPhase> Phase { get; }
 
         void Start();
         void Stop();

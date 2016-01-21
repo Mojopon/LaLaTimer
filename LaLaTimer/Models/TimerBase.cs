@@ -62,8 +62,9 @@ namespace LaLaTimer.Models
         }
         #endregion
 
-        public ReactiveProperty<bool> IsRunning { get; private set; } = new ReactiveProperty<bool>(false);
+
         public ReactiveProperty<bool> CountdownEnd { get; private set; } = new ReactiveProperty<bool>(false);
+        public ReactiveProperty<TimerPhase> Phase { get; private set; } = new ReactiveProperty<TimerPhase>(TimerPhase.IsIdle);
 
         private DispatcherTimerManager timer;
 
@@ -73,19 +74,21 @@ namespace LaLaTimer.Models
         {
             timer = new DispatcherTimerManager();
             timer.OnTick += (() => Tick());
+
+            Phase.Subscribe(x => Console.WriteLine(x));
         }
 
         public virtual void Start()
         {
             timer.Start();
-            IsRunning.Value = true;
+            Phase.Value = TimerPhase.IsRunning;
             CountdownEnd.Value = false;
         }
 
         public void Stop()
         {
             timer.Stop();
-            IsRunning.Value = false;
+            Phase.Value = TimerPhase.IsStopped;
         }
 
         public void Tick()
@@ -93,7 +96,7 @@ namespace LaLaTimer.Models
             if (CountdownEnd.Value) return;
             if(!ProgressSecond())
             {
-                CountdownEnd.Value = true;
+                TimerEnd();
             }
         }
 
@@ -126,12 +129,17 @@ namespace LaLaTimer.Models
         {
             if (Hour <= 0)
             {
-                CountdownEnd.Value = true;
                 return false;
             }
 
             Hour--;
             return true;
+        }
+
+        protected virtual void TimerEnd()
+        {
+            CountdownEnd.Value = true;
+            Phase.Value = TimerPhase.IsIdle;
         }
     }
 }

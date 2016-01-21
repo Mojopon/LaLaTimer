@@ -1,6 +1,9 @@
-﻿using System;
+﻿using LaLaTimer.Models;
+using Reactive.Bindings.Extensions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reactive.Disposables;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -27,9 +30,22 @@ namespace LaLaTimer.Views
     /// </summary>
     public partial class MainWindow : Window
     {
+        CompositeDisposable disposable = new CompositeDisposable();
         public MainWindow()
         {
             InitializeComponent();
+
+            LaLaTimerClient.Current.OnChangeTimer.Subscribe(OnChangeTimer);
+        }
+
+        void OnChangeTimer(ITimer timer)
+        {
+            disposable.Dispose();
+
+            timer.CountdownEnd.Subscribe(x =>
+            {
+                if (x) this.Activate();
+            }).AddTo(disposable);
         }
     }
 }

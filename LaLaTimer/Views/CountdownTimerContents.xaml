@@ -17,6 +17,6 @@
             <RowDefinition Height="9*" />
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" Text="Countdown Timer" />
-        <v:DigitalTimer />
+        <v:DigitalTimer Grid.Row="1"/>
     </Grid>
 </UserControl>

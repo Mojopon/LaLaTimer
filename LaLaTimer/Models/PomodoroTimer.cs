@@ -27,6 +27,8 @@ namespace LaLaTimer.Models
         private TimerTime breakTime;
         private TimerTime longBreakTime;
 
+        public override ReactiveProperty<double> Progress { get; } = new ReactiveProperty<double>();
+
         public int RepeatTime;
         public ReactiveProperty<int> RepeatTimeLeft = new ReactiveProperty<int>();
         private TimerTime current;
@@ -46,6 +48,12 @@ namespace LaLaTimer.Models
                     SwitchTimer();
                 }
             });
+        }
+
+        public override void Tick()
+        {
+            base.Tick();
+            Progress.Value = GetProgress();
         }
 
         public override void Reset()

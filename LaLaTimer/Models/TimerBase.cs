@@ -62,7 +62,7 @@ namespace LaLaTimer.Models
         }
         #endregion
 
-
+        public abstract ReactiveProperty<double> Progress { get; }
         public ReactiveProperty<bool> CountdownEnd { get; private set; } = new ReactiveProperty<bool>(false);
         public ReactiveProperty<TimerPhase> Phase { get; private set; } = new ReactiveProperty<TimerPhase>(TimerPhase.IsIdle);
 
@@ -85,13 +85,13 @@ namespace LaLaTimer.Models
             CountdownEnd.Value = false;
         }
 
-        public void Stop()
+        public virtual void Stop()
         {
             timer.Stop();
             Phase.Value = TimerPhase.IsStopped;
         }
 
-        public void Tick()
+        public virtual void Tick()
         {
             if (CountdownEnd.Value) return;
             if(!ProgressSecond())

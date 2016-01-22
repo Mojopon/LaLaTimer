@@ -15,7 +15,7 @@ namespace LaLaTimer.Models
         private int startMinute;
         private int startSecond;
 
-        public double Progress { get { return GetProgress(); } }
+        public override ReactiveProperty<double> Progress { get; } = new ReactiveProperty<double>();
 
         public CountdownTimer(int startHour, int startMinute, int startSecond) : base()
         {
@@ -33,6 +33,12 @@ namespace LaLaTimer.Models
                     Reset();
                 }
             });
+        }
+
+        public override void Tick()
+        {
+            base.Tick();
+            Progress.Value = GetProgress();
         }
 
         public override void Reset()

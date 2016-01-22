@@ -22,6 +22,7 @@ namespace LaLaTimer.Models
 
         ReactiveProperty<bool> CountdownEnd { get; }
         ReactiveProperty<TimerPhase> Phase { get; }
+        ReactiveProperty<double> Progress { get; }
 
         void Start();
         void Stop();

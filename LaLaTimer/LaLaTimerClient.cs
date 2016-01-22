@@ -25,6 +25,9 @@ namespace LaLaTimer
             
         public IObservable<ITimer> OnChangeTimer => this.TimerGateway.AsObservable();
 
-
+        public void CreateNewTimer(ITimer timer)
+        {
+            TimerGateway.OnNext(timer);
+        }
     }
 }

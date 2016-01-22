@@ -4,11 +4,13 @@ using System.Linq;
 using System.Text;
 
 using Livet;
+using Livet.Messaging;
 using LaLaTimer.Models;
+using Livet.Commands;
 
 namespace LaLaTimer.ViewModels
 {
-    public class TimerContentViewModel : NotificationObject
+    public class TimerContentViewModel : ViewModel
     {
 
         #region Content変更通知プロパティ
@@ -44,5 +46,31 @@ namespace LaLaTimer.ViewModels
                 Content = new CountdownTimerViewModel();
             }
         }
+
+        #region EditCommand
+        private ViewModelCommand _EditCommand;
+
+        public ViewModelCommand EditCommand
+        {
+            get
+            {
+                if (_EditCommand == null)
+                {
+                    _EditCommand = new ViewModelCommand(Edit, CanEdit);
+                }
+                return _EditCommand;
+            }
+        }
+
+        public bool CanEdit()
+        {
+            return true;
+        }
+
+        public void Edit()
+        {
+            Messenger.Raise(new TransitionMessage(new EditTimerWindowViewModel(), "EditCommand"));
+        }
+        #endregion
     }
 }

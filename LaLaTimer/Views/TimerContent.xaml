@@ -12,13 +12,19 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300"
              d:DataContext="{d:DesignInstance vm:TimerContentViewModel}">
-    <Grid DataContext="{Binding Content}">
+    <i:Interaction.Triggers>
+        <l:InteractionMessageTrigger MessageKey="EditCommand" Messenger="{Binding Messenger}">
+            <l:TransitionInteractionMessageAction
+                WindowType="{x:Type v:EditTimerWindow}" Mode="Modal"/>
+        </l:InteractionMessageTrigger>
+    </i:Interaction.Triggers>
+    <Grid DataContext="{Binding}">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />
             <RowDefinition Height="7*" />
             <RowDefinition Height="2*" />
         </Grid.RowDefinitions>
-        <ContentControl Grid.Row="1" x:Name="timerContent" Content="{Binding}" >
+        <ContentControl Grid.Row="1" x:Name="timerContent" Content="{Binding Content}" >
             <ContentControl.Resources>
                 <DataTemplate DataType="{x:Type vm:PomodoroTimerViewModel}">
                     <v:PomodoroTimerContents HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
@@ -28,9 +34,15 @@
                 </DataTemplate>
             </ContentControl.Resources>
         </ContentControl>
-        <Grid Grid.Row="2" x:Name="controlContents">
-            <v:StartButtonControl Width="60" Height="30"/>
-            <v:StopButtonControl Width="60" Height="30"/>
+        <Grid Grid.Row="2" x:Name="controlContents" Margin="0,0,0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="3*" />
+            </Grid.ColumnDefinitions>
+            <v:EditButtonControl Grid.Column="0" Width="60" Height="30" />
+            <v:StartButtonControl Grid.Column="1" Width="60" Height="30" DataContext="{Binding Content}"/>
+            <v:StopButtonControl Grid.Column="1" Width="60" Height="30" DataContext="{Binding Content}"/>
         </Grid>
     </Grid>
 </UserControl>

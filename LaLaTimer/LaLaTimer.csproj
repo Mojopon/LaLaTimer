@@ -109,14 +109,29 @@
     <Compile Include="Models\TimerBase.cs" />
     <Compile Include="Utility\DispatcherTimerManager.cs" />
     <Compile Include="ViewModels\CountdownTimerViewModel.cs" />
+    <Compile Include="ViewModels\CreateTimerWindowViewModel.cs" />
+    <Compile Include="ViewModels\EditCountdownTimerContentViewModel.cs" />
+    <Compile Include="ViewModels\EditTimerWindowViewModel.cs" />
     <Compile Include="ViewModels\PomodoroTimerViewModel.cs" />
     <Compile Include="ViewModels\TimerContentViewModel.cs" />
     <Compile Include="ViewModels\TimerViewModelBase.cs" />
     <Compile Include="Views\CountdownTimerContents.xaml.cs">
       <DependentUpon>CountdownTimerContents.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\EditCountdownTimerContent.xaml.cs">
+      <DependentUpon>EditCountdownTimerContent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditButtonControl.xaml.cs">
+      <DependentUpon>EditButtonControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditPomodoroTimerContent.xaml.cs">
+      <DependentUpon>EditPomodoroTimerContent.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\DigitalTimer.xaml.cs">
       <DependentUpon>DigitalTimer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditTimerWindow.xaml.cs">
+      <DependentUpon>EditTimerWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\RepeatTimeDisplay.xaml.cs">
       <DependentUpon>RepeatTimeDisplay.xaml</DependentUpon>
@@ -141,7 +156,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\EditCountdownTimerContent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EditButtonControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EditPomodoroTimerContent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\DigitalTimer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EditTimerWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

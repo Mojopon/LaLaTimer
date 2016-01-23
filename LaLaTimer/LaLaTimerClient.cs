@@ -27,7 +27,13 @@ namespace LaLaTimer
 
         public LaLaTimerClient()
         {
-
+            var timer = new PomodoroTimer(
+                            new TimerTime(0, 2, 0),
+                            new TimerTime(0, 1, 0),
+                            2,
+                            new TimerTime(0, 3, 0)
+                );
+            CreateNewTimer(timer);
         }
 
         public void CreateNewTimer(ITimer timer)

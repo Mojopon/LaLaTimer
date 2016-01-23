@@ -10,14 +10,12 @@ using Livet.Messaging;
 using Livet.Messaging.IO;
 using Livet.EventListeners;
 using Livet.Messaging.Windows;
-using LaLaTimer.Utility;
+
 using LaLaTimer.Models;
-using System.Reactive.Linq;
-using Reactive.Bindings.Extensions;
 
 namespace LaLaTimer.ViewModels
 {
-    public class TimerViewModelBase : ViewModel
+    public class EditPomodoroTimerContentViewModel : ViewModel
     {
         /* コマンド、プロパティの定義にはそれぞれ 
          * 
@@ -60,68 +58,6 @@ namespace LaLaTimer.ViewModels
          * LivetのViewModelではプロパティ変更通知(RaisePropertyChanged)やDispatcherCollectionを使ったコレクション変更通知は
          * 自動的にUIDispatcher上での通知に変換されます。変更通知に際してUIDispatcherを操作する必要はありません。
          */
-
-        #region Timer変更通知プロパティ
-        private ITimer _Timer;
-
-        public ITimer Timer
-        {
-            get
-            { return _Timer; }
-            set
-            { 
-                if (_Timer == value)
-                    return;
-                _Timer = value;
-                RaisePropertyChanged();
-            }
-        }
-        #endregion
-
-        #region TimerIsRunning変更通知プロパティ
-        private bool _TimerIsRunning;
-
-        public bool TimerIsRunning
-        {
-            get
-            { return _TimerIsRunning; }
-            set
-            { 
-                if (_TimerIsRunning == value)
-                    return;
-                _TimerIsRunning = value;
-                RaisePropertyChanged();
-            }
-        }
-        #endregion
-
-
-        public TimerViewModelBase()
-        {
-            CompositeDisposable = new LivetCompositeDisposable();
-
-            LaLaTimerClient.Current.OnChangeTimer.Subscribe(OnChangeTimer);
-        }
-
-        protected virtual void OnChangeTimer(ITimer timer)
-        {
-            Timer = timer;
-            Timer.Phase
-                 .Subscribe(x => TimerIsRunning = x == TimerPhase.IsRunning)
-                 .AddTo(CompositeDisposable);
-        }
-
-        public void OnPressStartButton()
-        {
-            if(TimerIsRunning) return;
-            Timer.Start();
-        }
-
-        public void OnPressStopButton()
-        {
-            if (!TimerIsRunning) return;
-            Timer.Stop();
-        }
 
         public void Initialize()
         {

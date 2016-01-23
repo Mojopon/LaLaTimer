@@ -112,6 +112,7 @@
     <Compile Include="ViewModels\CountdownTimerViewModel.cs" />
     <Compile Include="ViewModels\CreateTimerWindowViewModel.cs" />
     <Compile Include="ViewModels\EditCountdownTimerContentViewModel.cs" />
+    <Compile Include="ViewModels\EditPomodoroTimerContentViewModel.cs" />
     <Compile Include="ViewModels\EditTimerWindowViewModel.cs" />
     <Compile Include="ViewModels\PomodoroTimerViewModel.cs" />
     <Compile Include="ViewModels\TimerContentViewModel.cs" />

@@ -74,8 +74,6 @@ namespace LaLaTimer.Models
         {
             timer = new DispatcherTimerManager();
             timer.OnTick += (() => Tick());
-
-            Phase.Subscribe(x => Console.WriteLine(x));
         }
 
         public virtual void Start()

@@ -54,67 +54,9 @@ namespace LaLaTimer.ViewModels
         }
         #endregion
 
-
-        #region Hour変更通知プロパティ
-        private int _Hour;
-
-        public int Hour
-        {
-            get
-            { return _Hour; }
-            set
-            { 
-                if (_Hour == value)
-                    return;
-                _Hour = value;
-                RaisePropertyChanged();
-            }
-        }
-        #endregion
-
-
-        #region Minute変更通知プロパティ
-        private int _Minute;
-
-        public int Minute
-        {
-            get
-            { return _Minute; }
-            set
-            { 
-                if (_Minute == value)
-                    return;
-                _Minute = value;
-                RaisePropertyChanged();
-            }
-        }
-        #endregion
-
-
-        #region Second変更通知プロパティ
-        private int _Second;
-
-        public int Second
-        {
-            get
-            { return _Second; }
-            set
-            { 
-                if (_Second == value)
-                    return;
-                _Second = value;
-                RaisePropertyChanged();
-            }
-        }
-        #endregion
-
-
         public EditCountdownTimerContentViewModel()
         {
             LaLaTimerClient.Current.OnChangeTimer.Subscribe(OnChangeTimer);
-            Hour = 1;
-            Minute = 20;
-            Second = 30;
         }
 
         void OnChangeTimer(ITimer timer)
@@ -123,7 +65,6 @@ namespace LaLaTimer.ViewModels
             if (Timer == null) return;
 
             InitialTime = Timer.InitialTime;
-            Console.WriteLine("Initial time has been set");
         }
 
         public void Initialize()

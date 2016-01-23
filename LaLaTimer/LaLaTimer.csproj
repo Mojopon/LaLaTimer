@@ -107,6 +107,7 @@
     <Compile Include="Models\ITimer.cs" />
     <Compile Include="Models\PomodoroTimer.cs" />
     <Compile Include="Models\TimerBase.cs" />
+    <Compile Include="Models\TimerTime.cs" />
     <Compile Include="Utility\DispatcherTimerManager.cs" />
     <Compile Include="ViewModels\CountdownTimerViewModel.cs" />
     <Compile Include="ViewModels\CreateTimerWindowViewModel.cs" />
@@ -117,6 +118,12 @@
     <Compile Include="ViewModels\TimerViewModelBase.cs" />
     <Compile Include="Views\CountdownTimerContents.xaml.cs">
       <DependentUpon>CountdownTimerContents.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DigitalTimerInput.xaml.cs">
+      <DependentUpon>DigitalTimerInput.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\DigitalTimerInputField.xaml.cs">
+      <DependentUpon>DigitalTimerInputField.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\EditCountdownTimerContent.xaml.cs">
       <DependentUpon>EditCountdownTimerContent.xaml</DependentUpon>
@@ -153,6 +160,14 @@
     </Compile>
     <Compile Include="WindowService.cs" />
     <Page Include="Views\CountdownTimerContents.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DigitalTimerInput.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\DigitalTimerInputField.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

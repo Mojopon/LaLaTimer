@@ -11,17 +11,18 @@ namespace LaLaTimer.Models
 {
     public class CountdownTimer : TimerBase
     {
-        private int startHour;
-        private int startMinute;
-        private int startSecond;
+        public TimerTime InitialTime { get; private set; }
 
         public override ReactiveProperty<double> Progress { get; } = new ReactiveProperty<double>();
 
-        public CountdownTimer(int startHour, int startMinute, int startSecond) : base()
+        public CountdownTimer(TimerTime initialTime)
         {
-            this.startHour = startHour;
-            this.startMinute = startMinute;
-            this.startSecond = startSecond;
+
+        }
+
+        public CountdownTimer(int initialHour, int initialMinute, int initialSecond) : base()
+        {
+            InitialTime = new TimerTime(initialHour, initialMinute, initialSecond);
 
             Reset();
 
@@ -43,9 +44,9 @@ namespace LaLaTimer.Models
 
         public override void Reset()
         {
-            Hour = startHour;
-            Minute = startMinute;
-            Second = startSecond;
+            Hour = InitialTime.Hour;
+            Minute = InitialTime.Minute;
+            Second = InitialTime.Second;
             CountdownEnd.Value = false;
         }
 
@@ -59,7 +60,7 @@ namespace LaLaTimer.Models
 
         private double GetTotalStartTimeSecond()
         {
-            return startSecond + startMinute * 60 + ((startHour * 60) * 60);
+            return InitialTime.Second + InitialTime.Minute * 60 + ((InitialTime.Hour * 60) * 60);
         }
 
         private double GetTotalCurrentTimeSecond()

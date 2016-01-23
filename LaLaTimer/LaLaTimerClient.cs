@@ -13,17 +13,22 @@ namespace LaLaTimer
     {
         public static LaLaTimerClient Current { get; } = new LaLaTimerClient();
 
-        //private BehaviorSubject<ITimer> TimerGateway = new BehaviorSubject<ITimer>(new CountdownTimer(0, 3, 3));
+        private BehaviorSubject<ITimer> TimerGateway = new BehaviorSubject<ITimer>(new CountdownTimer(0, 3, 3));
         
-        private BehaviorSubject<ITimer> TimerGateway = new BehaviorSubject<ITimer>(new PomodoroTimer(
+        /*private BehaviorSubject<ITimer> TimerGateway = new BehaviorSubject<ITimer>(new PomodoroTimer(
             new TimerTime(0, 2, 0),
             new TimerTime(0, 1, 0),
             3,
             new TimerTime(0, 3, 0)
-            ));
+            ));*/
             
             
         public IObservable<ITimer> OnChangeTimer => this.TimerGateway.AsObservable();
+
+        public LaLaTimerClient()
+        {
+
+        }
 
         public void CreateNewTimer(ITimer timer)
         {

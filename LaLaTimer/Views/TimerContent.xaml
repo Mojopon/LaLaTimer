@@ -7,6 +7,7 @@
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
              xmlns:l="http://schemas.livet-mvvm.net/2011/wpf"
+             xmlns:c="clr-namespace:LaLaTimer.Views.Controls"
              xmlns:v="clr-namespace:LaLaTimer.Views"
              xmlns:vm="clr-namespace:LaLaTimer.ViewModels"
              mc:Ignorable="d" 
@@ -40,9 +41,9 @@
                 <ColumnDefinition Width="3*" />
                 <ColumnDefinition Width="3*" />
             </Grid.ColumnDefinitions>
-            <v:EditButtonControl Grid.Column="0" Width="60" Height="30" />
-            <v:StartButtonControl Grid.Column="1" Width="60" Height="30" DataContext="{Binding Content}"/>
-            <v:StopButtonControl Grid.Column="1" Width="60" Height="30" DataContext="{Binding Content}"/>
+            <c:EditButtonControl Grid.Column="0" Width="60" Height="30" />
+            <c:StartButtonControl Grid.Column="1" Width="60" Height="30" DataContext="{Binding Content}"/>
+            <c:StopButtonControl Grid.Column="1" Width="60" Height="30" DataContext="{Binding Content}"/>
         </Grid>
     </Grid>
 </UserControl>

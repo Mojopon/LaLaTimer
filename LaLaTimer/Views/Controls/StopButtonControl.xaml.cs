@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace LaLaTimer.Views
+namespace LaLaTimer.Views.Controls
 {
     /// <summary>
     /// Interaction logic for StopButtonControl.xaml

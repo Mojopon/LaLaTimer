@@ -128,7 +128,7 @@
     <Compile Include="Views\EditCountdownTimerContent.xaml.cs">
       <DependentUpon>EditCountdownTimerContent.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\EditButtonControl.xaml.cs">
+    <Compile Include="Views\Controls\EditButtonControl.xaml.cs">
       <DependentUpon>EditButtonControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\EditPomodoroTimerContent.xaml.cs">
@@ -149,10 +149,10 @@
     <Compile Include="Views\RepeatTimeDisplayIcon.xaml.cs">
       <DependentUpon>RepeatTimeDisplayIcon.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\StartButtonControl.xaml.cs">
+    <Compile Include="Views\Controls\StartButtonControl.xaml.cs">
       <DependentUpon>StartButtonControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\StopButtonControl.xaml.cs">
+    <Compile Include="Views\Controls\StopButtonControl.xaml.cs">
       <DependentUpon>StopButtonControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TimerContent.xaml.cs">
@@ -175,7 +175,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\EditButtonControl.xaml">
+    <Page Include="Views\Controls\EditButtonControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -216,11 +216,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\StartButtonControl.xaml">
+    <Page Include="Views\Controls\StartButtonControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\StopButtonControl.xaml">
+    <Page Include="Views\Controls\StopButtonControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

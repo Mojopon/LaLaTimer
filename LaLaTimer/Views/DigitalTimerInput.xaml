@@ -8,6 +8,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <c:DigitalTimerInputField Hour="{Binding Hour}" Minute="{Binding Minute}" Second="{Binding Second}"/>
+        <c:DigitalTimerInputField Hour="{Binding Hour}" Minute="{Binding Minute}" Second="{Binding Second}" FontSize="20"/>
     </Grid>
 </UserControl>

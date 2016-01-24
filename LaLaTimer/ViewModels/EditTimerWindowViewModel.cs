@@ -44,7 +44,7 @@ namespace LaLaTimer.ViewModels
 
         public void Initialize()
         {
-            LaLaTimerClient.Current.OnChangeTimer.Subscribe(x =>
+            LaLaTimerClient.Current.Timer.Subscribe(x =>
             {
                 var type = x.GetType();
 

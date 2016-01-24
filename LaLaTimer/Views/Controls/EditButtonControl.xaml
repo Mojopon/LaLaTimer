@@ -11,7 +11,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <Button Content="New" Command="{Binding EditCommand}">
+        <Button Content="Edit" Command="{Binding EditCommand}">
         </Button>
     </Grid>
 </UserControl>

@@ -35,7 +35,7 @@ namespace LaLaTimer.Views
         {
             InitializeComponent();
 
-            LaLaTimerClient.Current.OnChangeTimer.Subscribe(OnChangeTimer);
+            LaLaTimerClient.Current.Timer.Subscribe(OnChangeTimer);
         }
 
         void OnChangeTimer(ITimer timer)

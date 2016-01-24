@@ -3,10 +3,29 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:v="clr-namespace:LaLaTimer.Views" 
              xmlns:local="clr-namespace:LaLaTimer.Views"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-        <TextBlock Text="Edit Pomodoro Timer" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+    <Grid DataContext="{Binding Timer}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="7*" />
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="Task Time" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <v:DigitalTimerInput Grid.Row="0" Grid.Column="1" DataContext="{Binding TaskTime}" />
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="Break Time" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <v:DigitalTimerInput Grid.Row="1" Grid.Column="1" DataContext="{Binding BreakTime}" />
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="Repeat" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding RepeatTime, Mode=TwoWay}" Width="50" Height="30" TextAlignment="Center" FontSize="20" />
+        <TextBlock Grid.Row="3" Grid.Column="0" Text="Long Break" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <v:DigitalTimerInput Grid.Row="3" Grid.Column="1" DataContext="{Binding LongBreakTime}" />
+
     </Grid>
 </UserControl>

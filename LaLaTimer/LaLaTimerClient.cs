@@ -23,7 +23,7 @@ namespace LaLaTimer
             ));*/
             
             
-        public IObservable<ITimer> OnChangeTimer => this.TimerGateway.AsObservable();
+        public IObservable<ITimer> Timer => this.TimerGateway.AsObservable();
 
         public LaLaTimerClient()
         {

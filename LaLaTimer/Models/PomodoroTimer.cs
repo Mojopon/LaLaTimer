@@ -9,21 +9,21 @@ namespace LaLaTimer.Models
 {
     public class PomodoroTimer : TimerBase
     {
-        private TimerTime taskTime;
-        private TimerTime breakTime;
-        private TimerTime longBreakTime;
+        public TimerTime TaskTime { get; set; }
+        public TimerTime BreakTime { get; set; }
+        public int RepeatTime { get; set; }
+        public TimerTime LongBreakTime { get; set; }
 
         public override ReactiveProperty<double> Progress { get; } = new ReactiveProperty<double>();
 
-        public int RepeatTime;
         public ReactiveProperty<int> RepeatTimeLeft = new ReactiveProperty<int>();
         private TimerTime current;
         public PomodoroTimer(TimerTime taskTime, TimerTime breakTime, int repeat, TimerTime longBreakTime) : base()
         {
-            this.taskTime = taskTime;
-            this.breakTime = breakTime;
+            this.TaskTime = taskTime;
+            this.BreakTime = breakTime;
             this.RepeatTime = repeat;
-            this.longBreakTime = longBreakTime;
+            this.LongBreakTime = longBreakTime;
 
             Reset();
 
@@ -44,7 +44,7 @@ namespace LaLaTimer.Models
 
         public override void Reset()
         {
-            current = taskTime;
+            current = TaskTime;
             RepeatTimeLeft.Value = RepeatTime;
 
             ResetToDestination(current);
@@ -52,23 +52,23 @@ namespace LaLaTimer.Models
 
         void SwitchTimer()
         {
-            if (current == taskTime)
+            if (current == TaskTime)
             {
                 RepeatTimeLeft.Value--;
                 if (RepeatTimeLeft.Value <= 0)
                 {
-                    current = longBreakTime;
+                    current = LongBreakTime;
                 }
                 else
                 {
-                    current = breakTime;
+                    current = BreakTime;
                 }
             }
-            else if (current == breakTime)
+            else if (current == BreakTime)
             {
-                current = taskTime;
+                current = TaskTime;
             }
-            else if (current == longBreakTime)
+            else if (current == LongBreakTime)
             {
                 Stop();
                 Reset();

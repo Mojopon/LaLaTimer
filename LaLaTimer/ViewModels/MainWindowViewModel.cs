@@ -108,7 +108,7 @@ namespace LaLaTimer.ViewModels
             CompositeDisposable = new LivetCompositeDisposable();
 
             Content = new TimerContentViewModel();
-            LaLaTimerClient.Current.OnChangeTimer.Subscribe(OnChangeTimer);
+            LaLaTimerClient.Current.Timer.Subscribe(OnChangeTimer);
         }
 
         void OnChangeTimer(ITimer timer)

@@ -32,7 +32,7 @@ namespace LaLaTimer.ViewModels
 
         public TimerContentViewModel()
         {
-            LaLaTimerClient.Current.OnChangeTimer.Subscribe(OnChangeTimer);
+            LaLaTimerClient.Current.Timer.Subscribe(OnChangeTimer);
         }
 
         void OnChangeTimer(ITimer timer)

@@ -14,9 +14,10 @@
     <Grid DataContext="{Binding}">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />
-            <RowDefinition Height="9*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="7*" />
         </Grid.RowDefinitions>
-        <v:RepeatTimeDisplay Grid.Row="0"/>
-        <v:DigitalTimer Grid.Row="1"/>
+        <v:RepeatTimeDisplay Grid.Row="1"/>
+        <v:DigitalTimer Grid.Row="2" VerticalAlignment="Top"/>
     </Grid>
 </UserControl>

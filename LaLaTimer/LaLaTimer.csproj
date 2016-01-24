@@ -110,12 +110,12 @@
     <Compile Include="Models\TimerTime.cs" />
     <Compile Include="Utility\DispatcherTimerManager.cs" />
     <Compile Include="ViewModels\CountdownTimerViewModel.cs" />
-    <Compile Include="ViewModels\CreateTimerWindowViewModel.cs" />
     <Compile Include="ViewModels\EditCountdownTimerContentViewModel.cs" />
     <Compile Include="ViewModels\EditPomodoroTimerContentViewModel.cs" />
     <Compile Include="ViewModels\EditTimerWindowViewModel.cs" />
     <Compile Include="ViewModels\PomodoroTimerViewModel.cs" />
     <Compile Include="ViewModels\TimerContentViewModel.cs" />
+    <Compile Include="ViewModels\TimerSelectorViewModel.cs" />
     <Compile Include="ViewModels\TimerViewModelBase.cs" />
     <Compile Include="Views\CountdownTimerContents.xaml.cs">
       <DependentUpon>CountdownTimerContents.xaml</DependentUpon>
@@ -141,6 +141,9 @@
     <Compile Include="Views\EditTimerWindow.xaml.cs">
       <DependentUpon>EditTimerWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\PomodoroTimerTimeControls.xaml.cs">
+      <DependentUpon>PomodoroTimerTimeControls.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\RepeatTimeDisplay.xaml.cs">
       <DependentUpon>RepeatTimeDisplay.xaml</DependentUpon>
     </Compile>
@@ -158,6 +161,9 @@
     </Compile>
     <Compile Include="Views\TimerContent.xaml.cs">
       <DependentUpon>TimerContent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TimerSelector.xaml.cs">
+      <DependentUpon>TimerSelector.xaml</DependentUpon>
     </Compile>
     <Compile Include="WindowService.cs" />
     <Page Include="Views\CountdownTimerContents.xaml">
@@ -205,6 +211,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\PomodoroTimerTimeControls.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\RepeatTimeDisplay.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -226,6 +236,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\TimerContent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TimerSelector.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

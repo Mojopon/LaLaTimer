@@ -21,10 +21,11 @@
     </i:Interaction.Triggers>
     <Grid DataContext="{Binding}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*" />
+            <RowDefinition Height="2*" />
             <RowDefinition Height="7*" />
             <RowDefinition Height="2*" />
         </Grid.RowDefinitions>
+        <v:TimerSelector Grid.Row="0" DataContext="{Binding TimerSelector}" />
         <ContentControl Grid.Row="1" x:Name="timerContent" Content="{Binding Content}" >
             <ContentControl.Resources>
                 <DataTemplate DataType="{x:Type vm:PomodoroTimerViewModel}">

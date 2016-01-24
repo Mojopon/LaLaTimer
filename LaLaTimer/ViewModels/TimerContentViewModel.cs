@@ -30,6 +30,8 @@ namespace LaLaTimer.ViewModels
         }
         #endregion
 
+        public object TimerSelector { get; } = new TimerSelectorViewModel();
+
         public TimerContentViewModel()
         {
             LaLaTimerClient.Current.Timer.Subscribe(OnChangeTimer);

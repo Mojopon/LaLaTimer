@@ -36,27 +36,26 @@ namespace LaLaTimer.ViewModels
         }
         #endregion
 
-
-        public EditTimerWindowViewModel()
+        private ITimer timer;
+        public EditTimerWindowViewModel(ITimer timer)
         {
             CompositeDisposable = new LivetCompositeDisposable();
+
+            this.timer = timer;
         }
 
         public void Initialize()
         {
-            LaLaTimerClient.Current.Timer.Subscribe(x =>
-            {
-                var type = x.GetType();
+            var type = timer.GetType();
 
-                if (type == typeof(CountdownTimer))
-                {
-                    Content = new EditCountdownTimerContentViewModel();
-                }
-                else if (type == typeof(PomodoroTimer))
-                {
-                    Content = new EditPomodoroTimerContentViewModel();
-                }
-            }).AddTo(CompositeDisposable);
+            if (type == typeof(CountdownTimer))
+            {
+                Content = new EditCountdownTimerContentViewModel((CountdownTimer)timer);
+            }
+            else if (type == typeof(PomodoroTimer))
+            {
+                Content = new EditPomodoroTimerContentViewModel((PomodoroTimer)timer);
+            }
         }
     }
 }

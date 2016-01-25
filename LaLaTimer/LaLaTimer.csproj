@@ -118,6 +118,9 @@
     <Compile Include="ViewModels\TimerContentViewModel.cs" />
     <Compile Include="ViewModels\TimerSelectorViewModel.cs" />
     <Compile Include="ViewModels\TimerViewModelBase.cs" />
+    <Compile Include="Views\Controls\OkButtonControl.xaml.cs">
+      <DependentUpon>OkButtonControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\CountdownTimerContents.xaml.cs">
       <DependentUpon>CountdownTimerContents.xaml</DependentUpon>
     </Compile>
@@ -170,6 +173,10 @@
       <DependentUpon>TimerSelector.xaml</DependentUpon>
     </Compile>
     <Compile Include="WindowService.cs" />
+    <Page Include="Views\Controls\OkButtonControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\CountdownTimerContents.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

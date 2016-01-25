@@ -68,7 +68,11 @@ namespace LaLaTimer.ViewModels
 
         void OnChangeTimer(ITimer timer)
         {
-            if (CompositeDisposable.Count > 0) CompositeDisposable.Dispose();
+            if (CompositeDisposable.Count > 0)
+            {
+                CompositeDisposable.Dispose();
+                CompositeDisposable = new LivetCompositeDisposable();
+            };
 
             timer.Progress
                  .SkipLast(1)

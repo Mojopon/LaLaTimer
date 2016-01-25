@@ -7,6 +7,7 @@
         xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
         xmlns:l="http://schemas.livet-mvvm.net/2011/wpf"
         xmlns:v="clr-namespace:LaLaTimer.Views"
+        xmlns:controls="clr-namespace:LaLaTimer.Views.Controls"
         xmlns:vm="clr-namespace:LaLaTimer.ViewModels"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance vm:SelectTimerWindowViewModel}"
@@ -28,7 +29,13 @@
             <l:DataContextDisposeAction/>
         </i:EventTrigger>
         <!--WindowのCloseキャンセル処理に対応する場合は、WindowCloseCancelBehaviorの使用を検討してください-->
-
+        <l:InteractionMessageTrigger MessageKey="EditCommand" Messenger="{Binding Messenger}">
+            <l:TransitionInteractionMessageAction
+                WindowType="{x:Type v:EditTimerWindow}" Mode="Modal"/>
+        </l:InteractionMessageTrigger>
+        <l:InteractionMessageTrigger MessageKey="Close" Messenger="{Binding Messenger, Mode=OneWay}" >
+            <l:WindowInteractionMessageAction />
+        </l:InteractionMessageTrigger>
     </i:Interaction.Triggers>
 
     <Grid>
@@ -41,7 +48,9 @@
                 <ColumnDefinition Width="1*" />
                 <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
-            <v:TimerSelector DataContext="{Binding TimerSelector}"/>
+            <v:TimerSelector Grid.Column="0" DataContext="{Binding TimerSelector}"/>
+            <controls:EditButtonControl Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="50" Height="30"/>
         </Grid>
+        <controls:OkButtonControl Grid.Row="1" Width="50" Height="30" />
     </Grid>
 </Window>

@@ -20,7 +20,6 @@ namespace LaLaTimer.ViewModels
 {
     public class TimerSelectorViewModel : ViewModel
     {
-        public ReactiveProperty<bool> TimerIsSelected { get; private set; } = new ReactiveProperty<bool>();
         public ReactiveProperty<ITimer> SelectedTimer { get; private set; } = new ReactiveProperty<ITimer>();
 
         public ObservableCollection<ITimer> Timers { get; set; }
@@ -29,11 +28,6 @@ namespace LaLaTimer.ViewModels
         {
             CompositeDisposable = new LivetCompositeDisposable();
             Timers = LaLaTimerClient.Current.Timers;
-
-            SelectedTimer.Subscribe(x =>
-            {
-                if (x != null) TimerIsSelected.Value = true;
-            }).AddTo(CompositeDisposable);
         }
 
         public void Initialize()

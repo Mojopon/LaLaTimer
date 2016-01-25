@@ -28,14 +28,14 @@ namespace LaLaTimer
                             2,
                             new TimerTime(0, 3, 0)
                 );
-            CreateNewTimer(timer);
+            AddTimer(timer);
             var timer2 = new CountdownTimer(0, 5, 0);
-            CreateNewTimer(timer2);
+            AddTimer(timer2);
             SelectTimer(timer);
             SelectTimer(timer2);
         }
 
-        public void CreateNewTimer(ITimer timer)
+        public void AddTimer(ITimer timer)
         {
             _Timers.Add(timer);
             if (string.IsNullOrEmpty(timer.Name))
@@ -44,9 +44,20 @@ namespace LaLaTimer
             }
         }
 
+        public void SelectTimer(ITimer timer, bool resetTime)
+        {
+            if (Timers.Count == 0 || !Timers.Contains(timer)) return;
+
+            if (resetTime)
+            {
+                timer.Reset();
+            }
+            TimerGateway.OnNext(Timers[TimerIndex(timer)]);
+        }
+
         public void SelectTimer(ITimer timer)
         {
-            TimerGateway.OnNext(Timers[TimerIndex(timer)]);
+            SelectTimer(timer, false);
         }
 
         public int TimerIndex(ITimer timer)

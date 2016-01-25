@@ -35,9 +35,9 @@ namespace LaLaTimer.ViewModels
         }
         #endregion
 
-        public EditPomodoroTimerContentViewModel()
+        public EditPomodoroTimerContentViewModel(PomodoroTimer timer)
         {
-            LaLaTimerClient.Current.Timer.Subscribe((ITimer timer) => Timer = timer as PomodoroTimer);
+            Timer = timer;
         }
 
         public void Initialize()

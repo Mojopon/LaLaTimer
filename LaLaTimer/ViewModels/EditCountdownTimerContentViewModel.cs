@@ -54,16 +54,9 @@ namespace LaLaTimer.ViewModels
         }
         #endregion
 
-        public EditCountdownTimerContentViewModel()
+        public EditCountdownTimerContentViewModel(CountdownTimer timer)
         {
-            LaLaTimerClient.Current.Timer.Subscribe(OnChangeTimer);
-        }
-
-        void OnChangeTimer(ITimer timer)
-        {
-            Timer = timer as CountdownTimer;
-            if (Timer == null) return;
-
+            Timer = timer;
             InitialTime = Timer.InitialTime;
         }
 

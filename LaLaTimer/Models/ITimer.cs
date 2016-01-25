@@ -27,5 +27,6 @@ namespace LaLaTimer.Models
 
         void Start();
         void Stop();
+        void Reset();
     }
 }

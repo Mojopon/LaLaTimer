@@ -16,6 +16,7 @@ namespace LaLaTimer.Models
 
     public interface ITimer
     {
+        string Name { get; set; }
         int Hour { get; }
         int Minute { get; }
         int Second { get; }

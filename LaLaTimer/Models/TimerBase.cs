@@ -11,6 +11,24 @@ namespace LaLaTimer.Models
 {
     public abstract class TimerBase : NotificationObject, ITimer
     {
+        #region Name変更通知プロパティ
+
+        private string _Name;
+
+        public string Name
+        {
+            get
+            { return _Name; }
+            set
+            {
+                if (_Name == value)
+                    return;
+                _Name = value;
+                RaisePropertyChanged();
+            }
+        }
+        #endregion
+
         #region Hour変更通知プロパティ
         private int _Hour;
 
@@ -138,6 +156,11 @@ namespace LaLaTimer.Models
         {
             CountdownEnd.Value = true;
             Phase.Value = TimerPhase.IsIdle;
+        }
+
+        public override string ToString()
+        {
+            return Name;
         }
     }
 }

@@ -13,11 +13,14 @@ using Livet.Messaging.Windows;
 
 using LaLaTimer.Models;
 using System.Collections.ObjectModel;
+using Reactive.Bindings;
 
 namespace LaLaTimer.ViewModels
 {
     public class TimerSelectorViewModel : ViewModel
     {
+        public ReactiveProperty<ITimer> SelectedTimer { get; private set; } = new ReactiveProperty<ITimer>();
+
         public ObservableCollection<ITimer> Timers { get; set; }
 
         public TimerSelectorViewModel()

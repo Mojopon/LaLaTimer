@@ -29,12 +29,24 @@ namespace LaLaTimer
                             new TimerTime(0, 3, 0)
                 );
             CreateNewTimer(timer);
+            var timer2 = new CountdownTimer(0, 5, 0);
+            CreateNewTimer(timer2);
+            SelectTimer(timer);
+            SelectTimer(timer2);
         }
 
         public void CreateNewTimer(ITimer timer)
         {
             _Timers.Add(timer);
-            TimerGateway.OnNext(timer);
+            if (string.IsNullOrEmpty(timer.Name))
+            {
+                timer.Name = "Timer " + _Timers.Count;
+            }
+        }
+
+        public void SelectTimer(ITimer timer)
+        {
+            TimerGateway.OnNext(Timers[TimerIndex(timer)]);
         }
 
         public int TimerIndex(ITimer timer)

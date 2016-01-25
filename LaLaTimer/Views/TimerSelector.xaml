@@ -9,7 +9,9 @@
              d:DesignHeight="300" d:DesignWidth="300"
              d:DataContext="{d:DesignInstance vm:TimerSelectorViewModel}">
     <Grid>
-        <ListBox Name="timerSelectComboBox" ItemsSource="{Binding Timers}">
+        <ListBox Name="timerSelectComboBox" 
+                 ItemsSource="{Binding Timers}"
+                 SelectedItem="{Binding SelectedTimer.Value, Mode=TwoWay}">
             
         </ListBox>
     </Grid>

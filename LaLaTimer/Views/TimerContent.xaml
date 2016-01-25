@@ -16,17 +16,15 @@
     <i:Interaction.Triggers>
         <l:InteractionMessageTrigger MessageKey="EditCommand" Messenger="{Binding Messenger}">
             <l:TransitionInteractionMessageAction
-                WindowType="{x:Type v:EditTimerWindow}" Mode="Modal"/>
+                WindowType="{x:Type v:SelectTimerWindow}" Mode="Modal"/>
         </l:InteractionMessageTrigger>
     </i:Interaction.Triggers>
     <Grid DataContext="{Binding}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="2*" />
             <RowDefinition Height="7*" />
             <RowDefinition Height="2*" />
         </Grid.RowDefinitions>
-        <v:TimerSelector Grid.Row="0" DataContext="{Binding TimerSelector}" />
-        <ContentControl Grid.Row="1" x:Name="timerContent" Content="{Binding Content}" >
+        <ContentControl Grid.Row="0" x:Name="timerContent" Content="{Binding Content}" >
             <ContentControl.Resources>
                 <DataTemplate DataType="{x:Type vm:PomodoroTimerViewModel}">
                     <v:PomodoroTimerContents HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
@@ -36,7 +34,7 @@
                 </DataTemplate>
             </ContentControl.Resources>
         </ContentControl>
-        <Grid Grid.Row="2" x:Name="controlContents" Margin="0,0,0,10">
+        <Grid Grid.Row="1" x:Name="controlContents" Margin="0,0,0,10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="3*" />
                 <ColumnDefinition Width="3*" />

@@ -114,6 +114,7 @@
     <Compile Include="ViewModels\EditPomodoroTimerContentViewModel.cs" />
     <Compile Include="ViewModels\EditTimerWindowViewModel.cs" />
     <Compile Include="ViewModels\PomodoroTimerViewModel.cs" />
+    <Compile Include="ViewModels\SelectTimerWindowViewModel.cs" />
     <Compile Include="ViewModels\TimerContentViewModel.cs" />
     <Compile Include="ViewModels\TimerSelectorViewModel.cs" />
     <Compile Include="ViewModels\TimerViewModelBase.cs" />
@@ -158,6 +159,9 @@
     </Compile>
     <Compile Include="Views\Controls\StopButtonControl.xaml.cs">
       <DependentUpon>StopButtonControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SelectTimerWindow.xaml.cs">
+      <DependentUpon>SelectTimerWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TimerContent.xaml.cs">
       <DependentUpon>TimerContent.xaml</DependentUpon>
@@ -232,6 +236,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Controls\StopButtonControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SelectTimerWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -30,8 +30,6 @@ namespace LaLaTimer.ViewModels
         }
         #endregion
 
-        public object TimerSelector { get; } = new TimerSelectorViewModel();
-
         public TimerContentViewModel()
         {
             LaLaTimerClient.Current.Timer.Subscribe(OnChangeTimer);
@@ -71,7 +69,7 @@ namespace LaLaTimer.ViewModels
 
         public void Edit()
         {
-            Messenger.Raise(new TransitionMessage(new EditTimerWindowViewModel(), "EditCommand"));
+            Messenger.Raise(new TransitionMessage(new SelectTimerWindowViewModel(), "EditCommand"));
         }
         #endregion
     }

@@ -9,8 +9,8 @@
              d:DesignHeight="300" d:DesignWidth="300"
              d:DataContext="{d:DesignInstance vm:TimerSelectorViewModel}">
     <Grid>
-        <ComboBox Name="timerSelectComboBox" ItemsSource="{Binding Timers}" Width="200" Height="20">
+        <ListBox Name="timerSelectComboBox" ItemsSource="{Binding Timers}">
             
-        </ComboBox>
+        </ListBox>
     </Grid>
 </UserControl>

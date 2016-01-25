@@ -14,6 +14,7 @@ using Livet.Messaging.Windows;
 using LaLaTimer.Models;
 using System.Collections.ObjectModel;
 using Reactive.Bindings;
+using Reactive.Bindings.Extensions;
 
 namespace LaLaTimer.ViewModels
 {
@@ -26,12 +27,13 @@ namespace LaLaTimer.ViewModels
 
         public TimerSelectorViewModel()
         {
+            CompositeDisposable = new LivetCompositeDisposable();
             Timers = LaLaTimerClient.Current.Timers;
 
             SelectedTimer.Subscribe(x =>
             {
                 if (x != null) TimerIsSelected.Value = true;
-            });
+            }).AddTo(CompositeDisposable);
         }
 
         public void Initialize()

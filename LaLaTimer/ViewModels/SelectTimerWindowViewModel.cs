@@ -1,4 +1,5 @@
 ﻿using Livet;
+using Reactive.Bindings.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +10,12 @@ namespace LaLaTimer.ViewModels
 {
     public class SelectTimerWindowViewModel : ViewModel
     {
-        public object TimerSelector { get; } = new TimerSelectorViewModel();
+        public TimerSelectorViewModel TimerSelector { get; private set; }
 
         public SelectTimerWindowViewModel()
         {
-
+            CompositeDisposable = new LivetCompositeDisposable();
+            TimerSelector = new TimerSelectorViewModel().AddTo(CompositeDisposable);
         }
 
         public void Initialize() { }

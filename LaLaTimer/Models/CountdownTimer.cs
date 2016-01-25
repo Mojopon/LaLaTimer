@@ -15,15 +15,20 @@ namespace LaLaTimer.Models
 
         public override ReactiveProperty<double> Progress { get; } = new ReactiveProperty<double>();
 
-        public CountdownTimer(TimerTime initialTime)
+        public CountdownTimer() : base()
         {
-
+            InitialTime = new TimerTime();
+            Initialize();
         }
 
         public CountdownTimer(int initialHour, int initialMinute, int initialSecond) : base()
         {
             InitialTime = new TimerTime(initialHour, initialMinute, initialSecond);
+            Initialize();
+        }
 
+        void Initialize()
+        {
             Reset();
 
             this.CountdownEnd.Subscribe(x =>

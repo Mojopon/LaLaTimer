@@ -19,6 +19,7 @@ namespace LaLaTimer.ViewModels
 {
     public class TimerSelectorViewModel : ViewModel
     {
+        public ReactiveProperty<bool> TimerIsSelected { get; private set; } = new ReactiveProperty<bool>();
         public ReactiveProperty<ITimer> SelectedTimer { get; private set; } = new ReactiveProperty<ITimer>();
 
         public ObservableCollection<ITimer> Timers { get; set; }
@@ -26,6 +27,11 @@ namespace LaLaTimer.ViewModels
         public TimerSelectorViewModel()
         {
             Timers = LaLaTimerClient.Current.Timers;
+
+            SelectedTimer.Subscribe(x =>
+            {
+                if (x != null) TimerIsSelected.Value = true;
+            });
         }
 
         public void Initialize()

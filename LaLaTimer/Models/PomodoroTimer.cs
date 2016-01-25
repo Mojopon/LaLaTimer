@@ -18,13 +18,26 @@ namespace LaLaTimer.Models
 
         public ReactiveProperty<int> RepeatTimeLeft = new ReactiveProperty<int>();
         private TimerTime current;
+
+        public PomodoroTimer() : base()
+        {
+            this.TaskTime = new TimerTime();
+            this.BreakTime = new TimerTime();
+            this.LongBreakTime = new TimerTime();
+            Initialize();
+        }
+
         public PomodoroTimer(TimerTime taskTime, TimerTime breakTime, int repeat, TimerTime longBreakTime) : base()
         {
             this.TaskTime = taskTime;
             this.BreakTime = breakTime;
             this.RepeatTime = repeat;
             this.LongBreakTime = longBreakTime;
+            Initialize();
+        }
 
+        void Initialize()
+        {
             Reset();
 
             CountdownEnd.Subscribe(x =>

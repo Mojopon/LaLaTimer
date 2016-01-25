@@ -14,6 +14,8 @@ namespace LaLaTimer.Models
         public int Minute { get; set; }
         public int Second { get; set; }
 
+        public TimerTime() { }
+
         public TimerTime(int hour, int minute, int second)
         {
             Hour = hour;

@@ -61,6 +61,33 @@ namespace LaLaTimer.ViewModels
         public void Initialize() { }
 
 
+        #region CreateCommand
+        private ViewModelCommand _CreateCommand;
+
+        public ViewModelCommand CreateCommand
+        {
+            get
+            {
+                if (_CreateCommand == null)
+                {
+                    _CreateCommand = new ViewModelCommand(Create, CanCreate);
+                }
+                return _CreateCommand;
+            }
+        }
+
+        public bool CanCreate()
+        {
+            return true;
+        }
+
+        public void Create()
+        {
+            Messenger.Raise(new TransitionMessage(new EditTimerWindowViewModel(LaLaTimerClient.Current.Create()), "OpenEditWindow"));
+        }
+        #endregion
+
+
         #region EditCommand
         private ViewModelCommand _EditCommand;
 
@@ -83,7 +110,7 @@ namespace LaLaTimer.ViewModels
 
         public void Edit()
         {
-            Messenger.Raise(new TransitionMessage(new EditTimerWindowViewModel(SelectedTimer), "EditCommand"));
+            Messenger.Raise(new TransitionMessage(new EditTimerWindowViewModel(SelectedTimer), "OpenEditWindow"));
         }
         #endregion
 
@@ -109,7 +136,7 @@ namespace LaLaTimer.ViewModels
 
         public void Ok()
         {
-            LaLaTimerClient.Current.SelectTimer(SelectedTimer, true);
+            LaLaTimerClient.Current.Select(SelectedTimer, true);
             Messenger.Raise(new WindowActionMessage(WindowAction.Close, "Close"));
         }
         #endregion

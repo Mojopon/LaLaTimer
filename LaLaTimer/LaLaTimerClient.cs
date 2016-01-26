@@ -28,14 +28,21 @@ namespace LaLaTimer
                             2,
                             new TimerTime(0, 3, 0)
                 );
-            AddTimer(timer);
+            Add(timer);
             var timer2 = new CountdownTimer(0, 5, 0);
-            AddTimer(timer2);
-            SelectTimer(timer);
-            SelectTimer(timer2);
+            Add(timer2);
+            Select(timer);
+            Select(timer2);
         }
 
-        public void AddTimer(ITimer timer)
+        public ITimer Create()
+        {
+            var newTimer = new PomodoroTimer();
+            Add(newTimer);
+            return newTimer;
+        }
+
+        void Add(ITimer timer)
         {
             _Timers.Add(timer);
             if (string.IsNullOrEmpty(timer.Name))
@@ -44,7 +51,7 @@ namespace LaLaTimer
             }
         }
 
-        public void SelectTimer(ITimer timer, bool resetTime)
+        public void Select(ITimer timer, bool resetTime)
         {
             if (Timers.Count == 0 || !Timers.Contains(timer)) return;
 
@@ -52,15 +59,15 @@ namespace LaLaTimer
             {
                 timer.Reset();
             }
-            TimerGateway.OnNext(Timers[TimerIndex(timer)]);
+            TimerGateway.OnNext(Timers[GetIndex(timer)]);
         }
 
-        public void SelectTimer(ITimer timer)
+        public void Select(ITimer timer)
         {
-            SelectTimer(timer, false);
+            Select(timer, false);
         }
 
-        public int TimerIndex(ITimer timer)
+        public int GetIndex(ITimer timer)
         {
             int index = 0;
             foreach(var item in Timers)

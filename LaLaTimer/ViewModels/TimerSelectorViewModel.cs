@@ -29,7 +29,11 @@ namespace LaLaTimer.ViewModels
             CompositeDisposable = new LivetCompositeDisposable();
             Timers = LaLaTimerClient.Current.Timers;
 
-            LaLaTimerClient.Current.Timer.Subscribe((timer) => SelectedTimer.Value = timer);
+            SelectedTimer.Where(x => x == null)
+                         .Subscribe(x => 
+                         {
+                             SelectedTimer.Value = Timers[0];
+                         });
         }
 
         public void Initialize()

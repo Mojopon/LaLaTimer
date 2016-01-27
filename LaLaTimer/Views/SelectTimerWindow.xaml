@@ -11,7 +11,7 @@
         xmlns:vm="clr-namespace:LaLaTimer.ViewModels"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance vm:SelectTimerWindowViewModel}"
-        Title="SelectTimerWindow" Height="300" Width="300">
+        Title="SelectTimerWindow" Height="200" Width="300">
 
     <i:Interaction.Triggers>
 
@@ -49,8 +49,16 @@
                 <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
             <v:TimerSelector Grid.Column="0" DataContext="{Binding TimerSelector}"/>
-            <controls:EditButtonControl Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="50" Height="30" Margin="0,30,0,0"/>
-            <controls:CreateButtonControl Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="50" Height="30" Margin="0,0,0,30"/>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                </Grid.RowDefinitions>
+                <controls:CreateButtonControl Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="50" Height="30"/>
+                <controls:EditButtonControl Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="50" Height="30"/>
+                <controls:DeleteButtonControl Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="50" Height="30"/>
+            </Grid>
         </Grid>
         <controls:OkButtonControl Grid.Row="1" Width="50" Height="30" />
     </Grid>

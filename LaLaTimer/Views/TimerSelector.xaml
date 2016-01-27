@@ -10,6 +10,7 @@
              d:DataContext="{d:DesignInstance vm:TimerSelectorViewModel}">
     <Grid>
         <ListBox Name="timerSelectComboBox" 
+                 SelectionMode="Single"
                  ItemsSource="{Binding Timers}"
                  SelectedItem="{Binding SelectedTimer.Value, Mode=TwoWay}">
             

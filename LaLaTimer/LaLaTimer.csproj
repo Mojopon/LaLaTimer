@@ -124,6 +124,9 @@
     <Compile Include="Views\Controls\CreateButtonControl.xaml.cs">
       <DependentUpon>CreateButtonControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Controls\DeleteButtonControl.xaml.cs">
+      <DependentUpon>DeleteButtonControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Controls\OkButtonControl.xaml.cs">
       <DependentUpon>OkButtonControl.xaml</DependentUpon>
     </Compile>
@@ -183,6 +186,10 @@
     </Compile>
     <Compile Include="WindowService.cs" />
     <Page Include="Views\Controls\CreateButtonControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\DeleteButtonControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -32,8 +32,6 @@ namespace LaLaTimer.ViewModels
                     return;
                 _TimerIsSelected = value;
                 RaisePropertyChanged();
-
-                EditCommand.RaiseCanExecuteChanged();
             }
         }
         #endregion
@@ -54,8 +52,15 @@ namespace LaLaTimer.ViewModels
                              {
                                  TimerIsSelected = true;
                              }
+                             UpdateCanExecutes();
                          })
                          .AddTo(CompositeDisposable);
+        }
+
+        void UpdateCanExecutes()
+        {
+            EditCommand.RaiseCanExecuteChanged();
+            DeleteCommand.RaiseCanExecuteChanged();
         }
 
         public void Initialize() { }
@@ -138,6 +143,33 @@ namespace LaLaTimer.ViewModels
         {
             LaLaTimerClient.Current.Select(SelectedTimer, true);
             Messenger.Raise(new WindowActionMessage(WindowAction.Close, "Close"));
+        }
+        #endregion
+
+        #region DeleteCommand
+        private ViewModelCommand _DeleteCommand;
+
+        public ViewModelCommand DeleteCommand
+        {
+            get
+            {
+                if (_DeleteCommand == null)
+                {
+                    _DeleteCommand = new ViewModelCommand(Delete, CanDelete);
+                }
+                return _DeleteCommand;
+            }
+        }
+
+        public bool CanDelete()
+        {
+            // There should always be at least one timer in the list
+            return TimerIsSelected && LaLaTimerClient.Current.Count > 1;
+        }
+
+        public void Delete()
+        {
+            LaLaTimerClient.Current.Delete(SelectedTimer);
         }
         #endregion
 

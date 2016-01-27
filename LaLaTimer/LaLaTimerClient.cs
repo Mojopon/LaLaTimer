@@ -22,6 +22,7 @@ namespace LaLaTimer
         private ObservableCollection<ITimer> _Timers = new ObservableCollection<ITimer>();
         public ObservableCollection<ITimer> Timers { get { return _Timers; } }
 
+        public ITimer CurrentTimer { get; private set; }
         private LaLaTimerClient()
         {
             var timer = new PomodoroTimer(
@@ -35,6 +36,7 @@ namespace LaLaTimer
             Add(timer2);
             Select(timer);
             Select(timer2);
+            Timer.Subscribe(x => CurrentTimer = x);
         }
 
         public void Add(ITimer timer)
@@ -43,6 +45,21 @@ namespace LaLaTimer
             if (string.IsNullOrEmpty(timer.Name))
             {
                 timer.Name = "Timer " + Timers.Count;
+            }
+        }
+
+        public void Delete(ITimer timer)
+        {
+            if (!Timers.Contains(timer)) return;
+
+            Timers.Remove(timer);
+            if (timer == CurrentTimer)
+            {
+                Select();
+            }
+            else
+            {
+                Select(CurrentTimer);
             }
         }
 
@@ -62,6 +79,13 @@ namespace LaLaTimer
             Select(timer, false);
         }
 
+        public void Select()
+        {
+            if (Timers.Count == 0) return;
+
+            Select(Timers[0]);
+        }
+
         public int GetIndex(ITimer timer)
         {
             int index = 0;
@@ -71,6 +95,12 @@ namespace LaLaTimer
                 index++;
             }
             return index;
+        }
+
+        public int Count { get
+            {
+                return Timers.Count;
+            }
         }
     }
 }

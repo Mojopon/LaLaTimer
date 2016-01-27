@@ -1,5 +1,4 @@
-﻿using LaLaTimer.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace LaLaTimer.Views
+namespace LaLaTimer.Views.Controls
 {
     /// <summary>
-    /// Interaction logic for TimerSelector.xaml
+    /// Interaction logic for DeleteButtonControl.xaml
     /// </summary>
-    public partial class TimerSelector : UserControl
+    public partial class DeleteButtonControl : UserControl
     {
-        public TimerSelector()
+        public DeleteButtonControl()
         {
             InitializeComponent();
         }

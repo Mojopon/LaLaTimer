@@ -10,10 +10,10 @@ using Livet.Messaging;
 using Livet.Messaging.IO;
 using Livet.EventListeners;
 using Livet.Messaging.Windows;
-
 using LaLaTimer.Models;
 using System.Collections.ObjectModel;
 using Reactive.Bindings;
+using System.Reactive.Linq;
 using Reactive.Bindings.Extensions;
 
 namespace LaLaTimer.ViewModels
@@ -28,6 +28,8 @@ namespace LaLaTimer.ViewModels
         {
             CompositeDisposable = new LivetCompositeDisposable();
             Timers = LaLaTimerClient.Current.Timers;
+
+            LaLaTimerClient.Current.Timer.Subscribe((timer) => SelectedTimer.Value = timer);
         }
 
         public void Initialize()

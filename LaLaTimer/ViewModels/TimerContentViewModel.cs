@@ -37,6 +37,8 @@ namespace LaLaTimer.ViewModels
 
         void OnChangeTimer(ITimer timer)
         {
+            if (timer == null) return;
+
             if (typeof(PomodoroTimer) == timer.GetType())
             {
                 Content = new PomodoroTimerViewModel();

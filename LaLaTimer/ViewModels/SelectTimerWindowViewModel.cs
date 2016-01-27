@@ -1,4 +1,5 @@
-﻿using LaLaTimer.Models;
+﻿using LaLaTimer.Editor;
+using LaLaTimer.Models;
 using Livet;
 using Livet.Commands;
 using Livet.Messaging;
@@ -53,7 +54,6 @@ namespace LaLaTimer.ViewModels
                              {
                                  TimerIsSelected = true;
                              }
-                             Console.WriteLine(TimerIsSelected);
                          })
                          .AddTo(CompositeDisposable);
         }
@@ -83,7 +83,7 @@ namespace LaLaTimer.ViewModels
 
         public void Create()
         {
-            Messenger.Raise(new TransitionMessage(new EditTimerWindowViewModel(LaLaTimerClient.Current.Create()), "OpenEditWindow"));
+            Messenger.Raise(new TransitionMessage(new EditTimerWindowViewModel(LaLaTimerEditor.Current.CreateNew(TimerType.PomodoroTimer)), "OpenEditWindow"));
         }
         #endregion
 

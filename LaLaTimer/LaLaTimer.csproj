@@ -103,11 +103,13 @@
     </ApplicationDefinition>
     <Compile Include="Converter\DigitalTimerTextConverter.cs" />
     <Compile Include="LaLaTimerClient.cs" />
+    <Compile Include="LaLaTimerEditor.cs" />
     <Compile Include="Models\CountdownTimer.cs" />
     <Compile Include="Models\ITimer.cs" />
     <Compile Include="Models\PomodoroTimer.cs" />
     <Compile Include="Models\TimerBase.cs" />
     <Compile Include="Models\TimerTime.cs" />
+    <Compile Include="Models\TimerType.cs" />
     <Compile Include="Utility\DispatcherTimerManager.cs" />
     <Compile Include="ViewModels\CountdownTimerViewModel.cs" />
     <Compile Include="ViewModels\EditCountdownTimerContentViewModel.cs" />
@@ -117,6 +119,7 @@
     <Compile Include="ViewModels\SelectTimerWindowViewModel.cs" />
     <Compile Include="ViewModels\TimerContentViewModel.cs" />
     <Compile Include="ViewModels\TimerSelectorViewModel.cs" />
+    <Compile Include="ViewModels\TimerTypeControlViewModel.cs" />
     <Compile Include="ViewModels\TimerViewModelBase.cs" />
     <Compile Include="Views\Controls\CreateButtonControl.xaml.cs">
       <DependentUpon>CreateButtonControl.xaml</DependentUpon>
@@ -168,6 +171,9 @@
     </Compile>
     <Compile Include="Views\SelectTimerWindow.xaml.cs">
       <DependentUpon>SelectTimerWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TimerTypeControl.xaml.cs">
+      <DependentUpon>TimerTypeControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TimerContent.xaml.cs">
       <DependentUpon>TimerContent.xaml</DependentUpon>
@@ -254,6 +260,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SelectTimerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TimerTypeControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

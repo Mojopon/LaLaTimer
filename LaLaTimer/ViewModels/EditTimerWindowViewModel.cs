@@ -12,6 +12,7 @@ using Livet.EventListeners;
 using Livet.Messaging.Windows;
 
 using LaLaTimer.Models;
+using LaLaTimer.Editor;
 using Reactive.Bindings.Extensions;
 
 namespace LaLaTimer.ViewModels
@@ -20,9 +21,9 @@ namespace LaLaTimer.ViewModels
     {
 
         #region Content変更通知プロパティ
-        private object _Content;
+        private IDisposable _Content;
 
-        public object Content
+        public IDisposable Content
         {
             get
             { return _Content; }
@@ -36,26 +37,31 @@ namespace LaLaTimer.ViewModels
         }
         #endregion
 
-        private ITimer timer;
         public EditTimerWindowViewModel(ITimer timer)
         {
             CompositeDisposable = new LivetCompositeDisposable();
 
-            this.timer = timer;
+            LaLaTimerEditor.Current.Edit(timer);
+
+            LaLaTimerEditor.Current.Timer.Subscribe(x =>
+            {
+                if (Content != null) Content.Dispose();
+
+                var type = x.GetType();
+
+                if (type == typeof(CountdownTimer))
+                {
+                    Content = new EditCountdownTimerContentViewModel();
+                }
+                else if (type == typeof(PomodoroTimer))
+                {
+                    Content = new EditPomodoroTimerContentViewModel();
+                }
+            });
         }
 
         public void Initialize()
         {
-            var type = timer.GetType();
-
-            if (type == typeof(CountdownTimer))
-            {
-                Content = new EditCountdownTimerContentViewModel((CountdownTimer)timer);
-            }
-            else if (type == typeof(PomodoroTimer))
-            {
-                Content = new EditPomodoroTimerContentViewModel((PomodoroTimer)timer);
-            }
         }
     }
 }

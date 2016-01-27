@@ -86,6 +86,7 @@ namespace LaLaTimer.Models
 
         private DispatcherTimerManager timer;
 
+        public abstract TimerType TimerType { get; }
         public abstract void Reset();
 
         public TimerBase()

@@ -1,13 +1,20 @@
-﻿<UserControl x:Class="LaLaTimer.Views.EditPomodoroTimerContent"
+﻿<UserControl x:Class="LaLaTimer.Views.TimerTypeControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:v="clr-namespace:LaLaTimer.Views" 
              xmlns:local="clr-namespace:LaLaTimer.Views"
+             xmlns:vm="clr-namespace:LaLaTimer.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.DataContext>
+        <vm:TimerTypeControlViewModel />
+    </UserControl.DataContext>
     <Grid>
-        <v:PomodoroTimerTimeControls Grid.Row="1" DataContext="{Binding Timer}"/>
+        <ComboBox x:Name="timerTypeSelectComboBox"
+                  ItemsSource="{Binding TimerTypes}"
+                  SelectedItem="{Binding SelectedTimerType.Value}">
+            
+        </ComboBox>
     </Grid>
 </UserControl>

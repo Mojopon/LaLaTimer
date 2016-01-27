@@ -9,6 +9,8 @@ namespace LaLaTimer.Models
 {
     public class PomodoroTimer : TimerBase
     {
+        public override TimerType TimerType { get { return TimerType.PomodoroTimer; } }
+
         public TimerTime TaskTime { get; set; }
         public TimerTime BreakTime { get; set; }
         public int RepeatTime { get; set; }
@@ -21,9 +23,10 @@ namespace LaLaTimer.Models
 
         public PomodoroTimer() : base()
         {
-            this.TaskTime = new TimerTime();
-            this.BreakTime = new TimerTime();
-            this.LongBreakTime = new TimerTime();
+            this.TaskTime = new TimerTime(0,25,0);
+            this.BreakTime = new TimerTime(0,5,0);
+            this.RepeatTime = 4;
+            this.LongBreakTime = new TimerTime(0,15,0);
             Initialize();
         }
 

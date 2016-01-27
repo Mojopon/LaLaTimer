@@ -49,6 +49,8 @@ namespace LaLaTimer.ViewModels
 
             pomodoroTimer.RepeatTimeLeft.Subscribe(x =>
             {
+                if (x <= 0) return;
+
                 RepeatTimeLeft = new int[x].ToList();
             }).AddTo(CompositeDisposable);
         }

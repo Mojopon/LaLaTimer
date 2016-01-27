@@ -11,13 +11,15 @@ namespace LaLaTimer.Models
 {
     public class CountdownTimer : TimerBase
     {
+        public override TimerType TimerType { get { return TimerType.CountdownTimer; } }
+
         public TimerTime InitialTime { get; private set; }
 
         public override ReactiveProperty<double> Progress { get; } = new ReactiveProperty<double>();
 
         public CountdownTimer() : base()
         {
-            InitialTime = new TimerTime();
+            InitialTime = new TimerTime(0,5,0);
             Initialize();
         }
 

@@ -7,6 +7,8 @@ using System.Reactive.Subjects;
 using System.Reactive.Linq;
 using LaLaTimer.Models;
 using System.Collections.ObjectModel;
+using Reactive.Bindings;
+using LaLaTimer.Editor;
 
 namespace LaLaTimer
 {
@@ -14,13 +16,13 @@ namespace LaLaTimer
     {
         public static LaLaTimerClient Current { get; } = new LaLaTimerClient();
 
-        private BehaviorSubject<ITimer> TimerGateway = new BehaviorSubject<ITimer>(new CountdownTimer(0, 5, 0));
+        private BehaviorSubject<ITimer> TimerGateway = new BehaviorSubject<ITimer>(null);
         public IObservable<ITimer> Timer => this.TimerGateway.AsObservable();
 
         private ObservableCollection<ITimer> _Timers = new ObservableCollection<ITimer>();
         public ObservableCollection<ITimer> Timers { get { return _Timers; } }
 
-        public LaLaTimerClient()
+        private LaLaTimerClient()
         {
             var timer = new PomodoroTimer(
                             new TimerTime(0, 2, 0),
@@ -35,19 +37,12 @@ namespace LaLaTimer
             Select(timer2);
         }
 
-        public ITimer Create()
+        public void Add(ITimer timer)
         {
-            var newTimer = new PomodoroTimer();
-            Add(newTimer);
-            return newTimer;
-        }
-
-        void Add(ITimer timer)
-        {
-            _Timers.Add(timer);
+            Timers.Add(timer);
             if (string.IsNullOrEmpty(timer.Name))
             {
-                timer.Name = "Timer " + _Timers.Count;
+                timer.Name = "Timer " + Timers.Count;
             }
         }
 

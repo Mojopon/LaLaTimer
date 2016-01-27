@@ -20,6 +20,7 @@ namespace LaLaTimer.Models
         int Hour { get; }
         int Minute { get; }
         int Second { get; }
+        TimerType TimerType { get; }
 
         ReactiveProperty<bool> CountdownEnd { get; }
         ReactiveProperty<TimerPhase> Phase { get; }

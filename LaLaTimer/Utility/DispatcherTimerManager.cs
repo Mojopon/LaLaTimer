@@ -15,10 +15,13 @@ namespace LaLaTimer.Utility
 
         private DispatcherTimer dispatcherTimer;
 
-        public DispatcherTimerManager() : this(1) { }
+        public DispatcherTimerManager() : this(250) { }
 
         public DispatcherTimerManager(int updateFrequensyMS)
         {
+#if DEBUG
+            updateFrequensyMS = 1;
+#endif
             dispatcherTimer = new DispatcherTimer(DispatcherPriority.Normal);
             dispatcherTimer.Interval = TimeSpan.FromMilliseconds(updateFrequensyMS);
             dispatcherTimer.Tick += new EventHandler(Update);
@@ -41,13 +44,18 @@ namespace LaLaTimer.Utility
 
         private DateTime lastUpdate;
         private long progress;
+        private int tick = 1000;
         void Update(object sender, EventArgs e)
         {
             progress += (long)(DateTime.Now - lastUpdate).TotalMilliseconds;
             lastUpdate = DateTime.Now;
-            if (progress > 1)
+
+#if DEBUG
+            tick = 1;
+#endif
+            if (progress > tick)
             {
-                progress -= 1;
+                progress -= tick;
                 if (OnTick != null) OnTick();
             }
         }

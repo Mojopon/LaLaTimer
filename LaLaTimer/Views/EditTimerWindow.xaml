@@ -20,7 +20,12 @@
         </i:EventTrigger>
     </i:Interaction.Triggers>
     <Grid>
-        <ContentControl Content="{Binding Content}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="8*" />
+        </Grid.RowDefinitions>
+        <v:TimerTypeControl Grid.Row="0" Width="200" Height="30"/>
+        <ContentControl Grid.Row="1" Content="{Binding Content}">
             <ContentControl.Resources>
                 <DataTemplate DataType="{x:Type vm:EditCountdownTimerContentViewModel}">
                     <v:EditCountdownTimerContent/>

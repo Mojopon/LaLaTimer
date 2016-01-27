@@ -12,6 +12,8 @@ using Livet.EventListeners;
 using Livet.Messaging.Windows;
 
 using LaLaTimer.Models;
+using LaLaTimer.Editor;
+using Reactive.Bindings.Extensions;
 
 namespace LaLaTimer.ViewModels
 {
@@ -54,10 +56,16 @@ namespace LaLaTimer.ViewModels
         }
         #endregion
 
-        public EditCountdownTimerContentViewModel(CountdownTimer timer)
+        public EditCountdownTimerContentViewModel()
         {
-            Timer = timer;
-            InitialTime = Timer.InitialTime;
+            CompositeDisposable = new LivetCompositeDisposable();
+
+            LaLaTimerEditor.Current.Timer.Subscribe(x =>
+            {
+                Timer = (CountdownTimer)x;
+                InitialTime = Timer.InitialTime;
+            }).AddTo(CompositeDisposable);
+
         }
 
         public void Initialize()
